@@ -1,10 +1,10 @@
-# rainbow-bridge-wars frontend
+# RainbowWars VUE Frontend
 
 ## Description
 This is frontend in VUE for RawinbowWars. The RainbowWars project consists of three parts:
-- ethereum contract
-- near contract
-- frontend
+- ethereum solidity contract
+- near assembly contract
+- vue frontend
 
 ## Modify the Network Config
 ### ethereum network config

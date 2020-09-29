@@ -41,20 +41,98 @@
                             >X</el-button
                         >
                     </div>
-                    <div v-if="direction!='NONE'" >
-                      <Steps :direction="direction" :istep="step" />
+                    <div v-if="direction != 'NONE'">
+                        <Steps :direction="direction" :istep="step" />
                     </div>
                     <div v-else>
-                      <ul>
-                        <li>ETH-Account: {{ ethAccount }}</li><br>
-                        <li>ETH-Birdge: {{ $eBridge.bridgeAddress }}</li><br>
-                        <li>ERC20: {{ $eBridge.tokenAddress }}</li><br>
-                        <li>ERC20-Balance: {{ erc20 }}</li><br>
-                        <li>NEAR-Account: {{ nearAccount }}</li><br>
-                        <li>NEAR-Birdge: {{ $nBridge.bridgeAddress }}</li><br>
-                        <li>NRC20-Balance: {{ nrc20 }}</li><br>
-                        <li>github</li><br>
-                      </ul>
+                        <h3>Rinkeby Testnet</h3>
+                        <ul>
+                            <li>
+                                ETH-Account:
+                                <a
+                                    :href="`https://rinkeby.etherscan.io/address/${ethAccount}`"
+                                >
+                                    {{ ethAccount }}
+                                </a>
+                            </li>
+                            <br />
+                            <li>
+                                ETH-Contract:
+                                <a
+                                    :href="`https://rinkeby.etherscan.io/address/${$eBridge.bridgeAddress}`"
+                                >
+                                    {{ $eBridge.bridgeAddress }}
+                                </a>
+                            </li>
+                            <br />
+                            <li>
+                                ERC20:
+                                <a
+                                    :href="`https://rinkeby.etherscan.io/token/${$eBridge.tokenAddress}`"
+                                >
+                                    {{ $eBridge.tokenAddress }}
+                                </a>
+                            </li>
+                            <br />
+                            <li>ERC20-Balance: {{ erc20 }}</li>
+                            <br />
+                        </ul>
+                        <h3>Near Testnet</h3>
+                        <ul>
+                            <li>
+                                NEAR-Account:
+                                <a
+                                    :href="`https://explorer.testnet.near.org/accounts/${nearAccount}`"
+                                >
+                                    {{ nearAccount }}
+                                </a>
+                            </li>
+                            <br />
+                            <li>
+                                NEAR-Contract:
+                                <a
+                                    :href="`https://explorer.testnet.near.org/accounts/${$nBridge.bridgeAddress}`"
+                                >
+                                    {{ $nBridge.bridgeAddress }}
+                                </a>
+                            </li>
+                            <br />
+                            <li>NRC20-Balance: {{ nrc20 }}</li>
+                            <br />
+                        </ul>
+                        <h3>Github Repo</h3>
+                        <ul>
+                            <li>
+                                <a
+                                    href="https://github.com/peekpi/RainbowWars/README.md"
+                                >
+                                    Description
+                                </a>
+                            </li><br/>
+                            <li>
+                                <a
+                                    href="https://github.com/peekpi/RainbowWars-Assembly"
+                                >
+                                    AssemblyScript Contrat
+                                </a>
+                            </li>
+                            <br />
+                            <li>
+                                <a
+                                    href="https://github.com/peekpi/RainbowWars-Solidity"
+                                    >Solidity Contract
+                                </a>
+                            </li>
+                            <br />
+                            <li>
+                                <a
+                                    href="https://github.com/peekpi/RainbowWars-Vue"
+                                >
+                                    Frontend
+                                </a>
+                            </li>
+                            <br />
+                        </ul>
                     </div>
                 </el-card>
             </el-col>
@@ -109,21 +187,19 @@ export default {
             nearbusy: false,
             direction: "NONE",
             step: 0,
-            erc20:"-",
-            nrc20:"-",
+            erc20: "-",
+            nrc20: "-",
         };
     },
     methods: {
-        async updateBalance(isErc20){
-          if(isErc20)
-            this.erc20 = await this.$eBridge.getTokenBalance();
-          else
-            this.nrc20 = await this.$nBridge.getTokenBalance();
+        async updateBalance(isErc20) {
+            if (isErc20) this.erc20 = await this.$eBridge.getTokenBalance();
+            else this.nrc20 = await this.$nBridge.getTokenBalance();
         },
         stepStart(direction) {
-            if(direction == "NONE") {
-              this.updateBalance(true);
-              this.updateBalance(false);
+            if (direction == "NONE") {
+                this.updateBalance(true);
+                this.updateBalance(false);
             }
             this.direction = direction;
             this.step = 0;
@@ -172,7 +248,7 @@ export default {
         nearLogout() {
             console.log("nearLogout");
             this.nearAccount = "";
-            this.nrc20='';
+            this.nrc20 = "";
             this.$nBridge.logout();
         },
         async ethLogin() {
@@ -183,7 +259,7 @@ export default {
         ethLogout() {
             this.ethAccount = "";
             this.$eBridge.logout();
-            this.erc20='-'
+            this.erc20 = "-";
             console.log("ethLogout");
         },
     },

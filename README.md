@@ -1,10 +1,13 @@
 # RainbowWars VUE Frontend
 
 ## Description
-This is frontend in VUE for RawinbowWars. The RainbowWars project consists of three parts:
-- ethereum solidity contract
-- near assembly contract
-- vue frontend
+RainbowWars is a cross-chain game. Here is the [description][describe] and [demo][demo].
+
+This is frontend in VUE for RainbowWars.
+The RainbowWars project consists of three parts:
+- [ethereum solidity contract][ethcontract]
+- [near assembly contract][nearcontract]
+- [vue frontend][frontend]
 
 ## Modify the Network Config
 ### ethereum network config
@@ -62,3 +65,8 @@ yarn lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 [metamask]: https://metamask.io
+[demo]: https://peekpi.github.io/RainbowWars/dist
+[ethcontract]: https://github.com/peekpi/RainbowWars-Solidity
+[nearcontract]: https://github.com/peekpi/RainbowWars-Assembly
+[frontend]: https://github.com/peekpi/RainbowWars-Vue
+[describe]: https://github.com/peekpi/RainbowWars

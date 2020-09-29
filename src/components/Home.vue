@@ -51,6 +51,7 @@
                                 ETH-Account:
                                 <a
                                     :href="`https://rinkeby.etherscan.io/address/${ethAccount}`"
+                                    target="_blank"
                                 >
                                     {{ ethAccount }}
                                 </a>
@@ -60,6 +61,7 @@
                                 ETH-Contract:
                                 <a
                                     :href="`https://rinkeby.etherscan.io/address/${$eBridge.bridgeAddress}`"
+                                    target="_blank"
                                 >
                                     {{ $eBridge.bridgeAddress }}
                                 </a>
@@ -69,6 +71,7 @@
                                 ERC20:
                                 <a
                                     :href="`https://rinkeby.etherscan.io/token/${$eBridge.tokenAddress}`"
+                                    target="_blank"
                                 >
                                     {{ $eBridge.tokenAddress }}
                                 </a>
@@ -83,6 +86,7 @@
                                 NEAR-Account:
                                 <a
                                     :href="`https://explorer.testnet.near.org/accounts/${nearAccount}`"
+                                    target="_blank"
                                 >
                                     {{ nearAccount }}
                                 </a>
@@ -92,6 +96,7 @@
                                 NEAR-Contract:
                                 <a
                                     :href="`https://explorer.testnet.near.org/accounts/${$nBridge.bridgeAddress}`"
+                                    target="_blank"
                                 >
                                     {{ $nBridge.bridgeAddress }}
                                 </a>
@@ -104,7 +109,8 @@
                         <ul>
                             <li>
                                 <a
-                                    href="https://github.com/peekpi/RainbowWars/README.md"
+                                    href="https://github.com/peekpi/RainbowWars/blob/master/README.md"
+                                    target="_blank"
                                 >
                                     Description
                                 </a>
@@ -112,6 +118,7 @@
                             <li>
                                 <a
                                     href="https://github.com/peekpi/RainbowWars-Assembly"
+                                    target="_blank"
                                 >
                                     AssemblyScript Contrat
                                 </a>
@@ -120,13 +127,16 @@
                             <li>
                                 <a
                                     href="https://github.com/peekpi/RainbowWars-Solidity"
-                                    >Solidity Contract
+                                    target="_blank"
+                                >
+                                    Solidity Contract
                                 </a>
                             </li>
                             <br />
                             <li>
                                 <a
                                     href="https://github.com/peekpi/RainbowWars-Vue"
+                                    target="_blank"
                                 >
                                     Frontend
                                 </a>

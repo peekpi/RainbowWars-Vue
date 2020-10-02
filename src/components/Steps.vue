@@ -1,7 +1,10 @@
 <template>
     <div style="height: 300px">
-        <el-steps direction="vertical" :active="istep" finish-status="success">
-            <el-step v-for="(step,index) in steps" :key="index" :title="step"/>
+        <el-steps direction="vertical" :active="istep" finish-status="success" :process-status="status">
+            <el-step v-for="(step,index) in steps" 
+            :key="index" 
+            :title="step" 
+            :icon="istep == index ? 'el-icon-loading' : ''"/>
         </el-steps>
     </div>
 </template>
@@ -13,7 +16,7 @@ export default {
     name:"Steps",
     data(){return {
     }},
-    props:["direction", "istep"],
+    props:["direction", "istep", "status"],
     computed:{
         steps(){
             if(this.direction == "eth2near")

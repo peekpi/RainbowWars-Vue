@@ -42,7 +42,7 @@
                         >
                     </div>
                     <div v-if="direction != 'NONE'">
-                        <Steps :direction="direction" :istep="step" />
+                        <Steps :direction="direction" :istep="step" :status="stepStatus" />
                     </div>
                     <div v-else>
                         <h3>Rinkeby Testnet</h3>
@@ -196,6 +196,7 @@ export default {
             ethbusy: false,
             nearbusy: false,
             direction: "NONE",
+            stepStatus: "process",
             step: 0,
             erc20: "-",
             nrc20: "-",
@@ -211,6 +212,7 @@ export default {
                 this.updateBalance(true);
                 this.updateBalance(false);
             }
+            this.stepStatus = 'process';
             this.direction = direction;
             this.step = 0;
         },
@@ -236,8 +238,18 @@ export default {
             console.log("ethAttack:", info);
             const eb = this.$eBridge;
             const nb = this.$nBridge;
-            const tx = await eb.attack(info.amount, info.to);
-            await this.relay(eb, nb, tx);
+            try {
+                const tx = await eb.attack(info.amount, info.to);
+                await this.relay(eb, nb, tx);
+            } catch (e) {
+                window.err = e;
+                this.$notify.error({
+                    title: "ERROR",
+                    duration:0,
+                    message: e.message?e.message:e,
+                });
+                this.stepStatus = 'error';
+            }
             this.ethbusy = false;
         },
         async nearAttack(info) {
@@ -246,8 +258,18 @@ export default {
             console.log("nearAttack:", info);
             const eb = this.$eBridge;
             const nb = this.$nBridge;
-            const tx = await nb.attack(info.amount, info.to);
-            await this.relay(nb, eb, tx);
+            try {
+                const tx = await nb.attack(info.amount, info.to);
+                await this.relay(nb, eb, tx);
+            } catch (e) {
+                window.err = e;
+                this.$notify.error({
+                    title: "ERROR",
+                    duration:0,
+                    message: e.message?e.message:e,
+                });
+                this.stepStatus = 'error';
+            }
             this.nearbusy = false;
         },
         async nearLogin() {

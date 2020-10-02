@@ -60,7 +60,6 @@ class EthBridge {
 
     async getProof(txHash) {
         let resp = await this.gp.receiptProof(txHash)
-
         let rawReceipt = await this.web3.eth.getTransactionReceipt(txHash)
         let blockHash = rawReceipt.blockHash.replace("0x", "")
         return {
